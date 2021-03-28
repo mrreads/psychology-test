@@ -4,6 +4,8 @@ class Test
 
     constructor()
     {
+        this.value = 0;
+
         this.mainElement = document.querySelector('#main');
         this.data = Object.entries(data);
         
@@ -16,25 +18,31 @@ class Test
             window['q'+q[0]] = e => {
                 this.mainElement.innerHTML = '';
 
-                let layoyt = `<h1> Это вопрос №${q[0]}</h1>`;
-                layoyt += `<h2>${q[1].text}</h2>`;
+                let temp;
+
+                temp = document.createElement('h1');
+                temp.textContent = 'Вопрос номер ' + q[0];
+                this.mainElement.append(temp);
                 
-                if (+q[0] == this.data.length)
-                {
-                    let endButton = document.createElement('button');
-                    endButton.textContent = 'Конецц';
-                    endButton.addEventListener('click', this.end.bind(this));
+                q[1].forEach(b => {
                     
-                    this.mainElement.innerHTML = layoyt;
-                    
-                    this.mainElement.appendChild(endButton);
-                }
-                else
-                {
-                    layoyt += `<button onclick="window['q${+q[0] + 1}']()"> Следующий вопрос </button>`;
-                    
-                    this.mainElement.innerHTML = layoyt;
-                }
+                    temp = document.createElement('button');
+                    temp.textContent = b.name;
+                    temp.addEventListener('click', e => {
+                        this.value = Number.parseInt(b.value) + this.value;
+
+                        if (+q[0] == this.data.length)
+                            this.end();
+                        else
+                            window[`q${+q[0] + 1}`]();
+                    });
+                    this.mainElement.append(temp);
+
+                });
+                
+                temp = document.createElement('p');
+                temp.textContent = `Это ${q[0]} вопрос из ${this.data.length}`;
+                this.mainElement.append(temp);
             };
         })
 
@@ -45,7 +53,7 @@ class Test
     end()
     {
         this.mainElement.innerHTML = '';
-        let layoyt = `<h1> Ваш результат: </h1>`;
+        let layoyt = `<h1> Ваш результат: ${this.value}</h1>`;
         this.mainElement.innerHTML = layoyt;
     }
 }

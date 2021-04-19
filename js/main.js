@@ -134,6 +134,21 @@ class Test
                             <p class='addictional'> если бы у вас было от 20 до 29 баллов  - выраженная депрессия (средней тяжести) </p>`;
                             
         this.mainElement.innerHTML = layoyt;
+
+        let date = new Date();
+
+        let data = new FormData();
+        data.append('name', this.nick)
+        data.append('value', this.value);
+        data.append('date', `${date.getHours()}:${date.getMinutes()}, ${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`);
+
+        fetch(`./../php/updateResults.php`, {
+            method: 'POST',
+            body: data
+        })
+        .then(response => response.text())
+        .then(result => {  });
+
     }
 }
 

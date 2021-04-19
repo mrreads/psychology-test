@@ -71,7 +71,6 @@ p
 
 button, input
 {
-	text-align: center;
 	font-size: 18px;
 	font-weight: bold;
 
@@ -81,6 +80,7 @@ button, input
 
 	cursor: pointer;
 	transition: 0.3s background-color, color, border;
+	text-align: center;
 	text-transform: uppercase;
 
 	border: 2px solid black;
@@ -111,6 +111,54 @@ button:hover
 
 	opacity: 0.4;
 }
+
+.results
+{
+	display: flex;
+	flex-flow: column nowrap;
+
+	width: 100%;
+	margin-top: 50px;
+}
+
+.result
+{
+	display: flex;
+	align-items: center;
+	flex-flow: row nowrap;
+	justify-content: center;
+	min-height: 50px;
+	border-bottom: 1px solid black;
+	width: 100%;
+	padding: 0 15px;
+}
+
+.result p
+{
+	margin-top: 0;
+}
+
+.result__name
+{
+	flex-grow: 1;
+}
+
+.result__name
+{
+	text-align: left;
+}
+
+.result__value
+{
+	min-width: 50px;
+	text-align: left;
+}
+
+.result__date
+{
+	min-width: 200px;
+}
+
 
 @media screen and (max-width: 800px)
 {
@@ -146,13 +194,61 @@ button:hover
 		padding-right: 20px;
 		padding-left: 20px;
 	}
+	.result
+	{
+		flex-flow: row wrap;
+	}
+	.result p
+	{
+		text-align: center;
+		flex-grow: 1;
+		font-size: 23px;
+	}
+	.result__name
+	{
+		margin-top: 10px;
+		width: 100%;
+	}
+	.result__value, .result__date
+	{
+		padding: 10px 0;
+	}
+	.result p.result__value
+	{
+		text-align: right;
+		margin-right: 50px;
+	}
+	.result p.result__date
+	{
+		margin-left: 50px;
+		text-align: left;
+	}
 }
 
 @media screen and (max-width: 475px)
 {
+	.result
+	{
+		flex-flow: column wrap;
+	}
+	.result p
+	{
+		padding: 10px 0;
+	}
 	#main
 	{
 		padding: 0 5px;
+	}
+	.result p.result__value
+	{
+		padding: 5px 0;
+		text-align: center;
+		margin-right: 0
+	}
+	.result p.result__date
+	{
+		margin-left: 0;
+		text-align: center;
 	}
 }
 

@@ -206,7 +206,7 @@ button:hover
 	}
 	.result__name
 	{
-		margin-top: 10px;
+		padding-top: 10px;
 		width: 100%;
 	}
 	.result__value, .result__date

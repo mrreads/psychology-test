@@ -4,12 +4,50 @@ class Test
 
     constructor()
     {
+        this.nick;
         this.value = 0;
 
         this.mainElement = document.querySelector('#main');
         this.data = Object.entries(data);
         
-        document.querySelector('.start').addEventListener('click', this.start.bind(this));
+        document.querySelector('.start').addEventListener('click', this.prestart.bind(this));
+    }
+
+    prestart()
+    {
+
+        let temp = '';
+
+        this.mainElement.innerHTML = '';
+
+        temp = document.createElement('h1');
+        temp.textContent = 'Представьтесь!';
+        this.mainElement.append(temp);
+
+        temp = document.createElement('h1');
+        temp.textContent = 'Можно использовать псевдоним, для анонимности.';
+        this.mainElement.append(temp);
+
+        temp = document.createElement('input');
+        temp.type = 'text';
+        temp.classList.add('nick');
+        temp.placeholder = 'Можно использовать псевдоним, для анонимности.';
+        this.mainElement.append(temp);
+
+        temp = document.createElement('button');
+        temp.textContent = 'Продолжить';
+        temp.addEventListener('click', () => {
+            if (document.querySelector('.nick').value != '')
+            {
+                this.nick = document.querySelector('.nick').value;
+                this.start();
+            }
+            else
+            {
+                document.querySelector('.nick').placeholder = 'Введите хоть что нибудь.'
+            }
+        });
+        this.mainElement.append(temp);
     }
 
     start()
@@ -55,8 +93,10 @@ class Test
     {
         this.mainElement.innerHTML = '';
         
-        let layoyt = `<h1> Вы набрали ${this.value} балла </h1>`;
+        let layoyt = `<p> Пссс, вы ${this.nick}? </p>`;
         
+        layoyt += `<h1> Вы набрали ${this.value} балла </h1>`;
+
         if (this.value >= 0 && this.value <= 9)
             layoyt += `<p> у вас от 0 до 9 баллов </p> <h2> у Вас отсутствуют депрессивные симптомы </h2>
                             <p class='addictional' style='margin-top: 35px'> если бы у вас было от 10 до 15 баллов - легкая депрессия (субдепрессия) </p>

@@ -16,6 +16,10 @@ include('./php/conection.php');
     
     <div id="main">
 
+    <?php
+        if ($_COOKIE['auth'])
+        { 
+    ?>
         <h1>Список тестируемых</h1>
 
         <div class="results">
@@ -34,7 +38,23 @@ include('./php/conection.php');
             echo '</div>';
         }
         ?>
-        </div>   
+        </div> 
+    <?php
+        }
+        else
+        {
+        ?>
+            <h2>Для доступа к результатам</h2>
+            <h1>Введите логин и пароль</h1>
+            <form action="./php/auth.php" method="POST">
+                <input type="text" placeholder="логин" name="login">
+                <input type="text" placeholder="пароль" name="password">
+                <button class="start">Войти</button>
+            </form>
+
+        <?php
+        }
+    ?>  
     </div>
 
 </body>

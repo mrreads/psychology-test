@@ -1,26 +1,15 @@
 <?php
 
-$file =  __DIR__ . './../result.json';
+include('./conection.php');
 
-if(!is_file($file))
-{
+echo "<pre>";
+print_r($_POST);
+echo "</pre>";
 
-    $put = '';
-    file_put_contents($file, $put);
-}
+$name = $_POST['name'];
+$value = $_POST['value'];
+$date = $_POST['date'];
 
-$old = file_get_contents($file);
-$old = json_decode($old);
+$query = "INSERT INTO `results` (`id_result`, `result_name`, `result_date`, `result_value`) VALUES (NULL, '$name', '$date', '$value');";
 
-if (empty($old))
-{
-    $old = [];
-}
-
-$new = $_POST;
-
-array_push($old, $new);
-
-$data = json_encode($old);
-
-file_put_contents($file, $data);
+mysqli_query($link, $query);

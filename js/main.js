@@ -140,7 +140,7 @@ class Test
         let data = new FormData();
         data.append('name', this.nick)
         data.append('value', this.value);
-        data.append('date', `${date.getHours()}:${(date.getMinutes()<10?'0':'') + date.getMinutes()}, ${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`);
+        data.append('date', `${date.getFullYear()}.${date.getMonth()}.${date.getDate()} ${date.getHours()}:${(date.getMinutes()<10?'0':'') + date.getMinutes()}`);
 
         fetch(`./../php/updateResults.php`, {
             method: 'POST',

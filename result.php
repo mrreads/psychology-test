@@ -1,5 +1,9 @@
+<?php
+include('./php/conection.php');
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +11,6 @@
     <title> Список тестируемых </title>
 
     <link rel="stylesheet" href="./css/general.css">
-    <script src="./js/result.js" defer></script>
-    
 </head>
 <body>
     
@@ -17,8 +19,22 @@
         <h1>Список тестируемых</h1>
 
         <div class="results">
-        </div>
-    
+        <?php
+        $query = "SELECT * FROM `results`;";
+        $result = mysqli_query($link, $query);
+        while ($data = mysqli_fetch_assoc($result))
+        {
+            $name = $data['result_name'];
+            $value = $data['result_value'];
+            $date = $data['result_date'];
+            echo '<div class="result">';
+                echo '<p class="result__name">'. $name .'</p>';
+                echo '<p class="result__value">'. $value .'</p>';
+                echo '<p class="result__date">'. $date .'</p>';
+            echo '</div>';
+        }
+        ?>
+        </div>   
     </div>
 
 </body>

@@ -48,7 +48,7 @@ include('./php/conection.php');
             <h1>Введите логин и пароль</h1>
             <form action="./php/auth.php" method="POST">
                 <input type="text" placeholder="логин" name="login">
-                <input type="text" placeholder="пароль" name="password">
+                <input type="password" placeholder="пароль" name="password">
                 <button class="start">Войти</button>
             </form>
 
